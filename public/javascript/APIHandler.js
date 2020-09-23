@@ -1,25 +1,27 @@
 class APIHandler {
-  constructor (baseUrl) {
+  constructor(baseUrl) {
     this.BASE_URL = baseUrl;
   }
 
-  getFullList () {
-
+  getFullList() {
+    return this.service.get("/");
   }
 
-  getOneRegister () {
-
+  getOneRegister() {
+    return this.service.get("/" + id);
   }
 
-  createOneRegister () {
-
+  createOneRegister() {
+    return this.service.post("/create" + id, data);
   }
 
-  updateOneRegister () {
-
+  updateOneRegister() {
+    return this.servcie.pacth("/" + id, data);
   }
 
-  deleteOneRegister () {
-
+  deleteOneRegister() {
+    return this.service.delete("/" + id, data);
   }
 }
+
+export default APIHandler;
