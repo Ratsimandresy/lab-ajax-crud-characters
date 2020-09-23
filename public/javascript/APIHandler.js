@@ -10,20 +10,21 @@ class APIHandler {
     return this.service.get("/");
   }
 
-  getOneRegister() {
-    return this.service.get("/" + id);
+  getOneRegister(id) {
+
+    return this.service.get("/" + `${id}`);
   }
 
-  createOneRegister() {
-    return this.service.post("/create" + id, data);
+  createOneRegister(id, data) {
+    return this.service.post("/create" + `${id}`, data);
   }
 
-  updateOneRegister() {
-    return this.servcie.pacth("/" + id, data);
+  updateOneRegister(id, data) {
+    return this.servcie.pacth("/" + `${id}`, data);
   }
 
-  deleteOneRegister() {
-    return this.service.delete("/" + id, data);
+  deleteOneRegister(id, data) {
+    return this.service.delete("/" + `${id}`, data);
   }
 }
 

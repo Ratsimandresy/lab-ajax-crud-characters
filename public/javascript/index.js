@@ -1,6 +1,8 @@
 import APIHandler from "./APIHandler.js";
 
 const charactersAPI = new APIHandler("http://localhost:8000/characters");
+const id = document.getElementById("get-one");
+const characterContainer = document.querySelector(".characters-container");
 
 window.addEventListener("load", () => {
   document
@@ -22,14 +24,35 @@ window.addEventListener("load", () => {
             </div>
             `;
           });
-          document.querySelector(".characters-container").innerHTML = str;
+          characterContainer.innerHTML = str;
         })
         .catch((apiError) => console.log(apiError));
     });
 
   document
     .getElementById("fetch-one")
-    .addEventListener("click", function (event) {});
+    .addEventListener("click", function (event) {
+      console.log(id.value);
+
+      charactersAPI
+        .getOneRegister(id.value)
+        .then((apiRes) => {
+          console.log(apiRes.data);
+          const data = apiRes.data;
+          let str = `
+          <div class="character-info">
+          <div class="name">${data.name}</div>
+          <div class="occupation">${data.occupation}</div>
+          <div class="cartoon">${data.cartoon}</div>
+          <div class="weapon">${data.weapon}</div>
+       </div>
+          `;
+          characterContainer.innerHTML = str;
+        })
+        .catch((apiError) => {
+          console.log(apiError);
+        });
+    });
 
   document
     .getElementById("delete-one")
